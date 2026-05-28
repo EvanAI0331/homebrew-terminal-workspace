@@ -7,12 +7,19 @@ cask "terminal-workspace" do
   desc "Cross-project multi-terminal workspace for local development stacks"
   homepage "https://github.com/EvanAI0331/terminal-workspace"
 
+  depends_on arch: :arm64
+
   livecheck do
     url :url
     strategy :github_latest
   end
 
   app "Terminal Workspace.app"
+
+  caveats <<~EOS
+    Terminal Workspace is currently ad-hoc signed and not notarized.
+    If macOS blocks first launch, open System Settings -> Privacy & Security and approve it.
+  EOS
 
   zap trash: [
     "~/Library/Application Support/Terminal Workspace",
